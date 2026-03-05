@@ -39,7 +39,7 @@ let ltsPorKmRecorrido = km / lts;
 alert('Consumision: ' + ltsPorKmRecorrido + 'L/Km.');
 
 // Ejercicio 6 - hora a segundos
-// 1h = 60min - 1min = 60 seg
+// 1h = 60min - 1min = 60 segundo
 // x * 60min = convierte a minutos
 // y * 60seg = convierte a segundos
 let horaInput  = prompt('Ingresar hora:');
