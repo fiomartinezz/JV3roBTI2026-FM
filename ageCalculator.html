@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Edad</title>
+    <style>
+    body{
+    font-family: Arial, sans-serif;
+    background: #eee;
+    display: grid;
+    place-items: center;
+    height: 100vh;
+}
+    input{
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+    button{
+    padding: 10px;
+    background: #555;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+</style>
+</head>
+<body>
+    <fieldset>
+    <legend><h1>Age Calculator</h1></legend>
+    <label>Enter your birth date:</label>
+    <input type="date" id="birthdate">
+    <button onclick="calculateAge()">Calculate</button>
+    <p id="result"></p>
+    </fieldset>
+<script src="calculatorJS.js"></script>
+</body>
+</html>
