@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ciclos en Html</title>
+    <style>
+        .textoDinamico{
+            color: palevioletred;
+            border-bottom: 1px solid #eee;
+        }
+        body{font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; padding: 40px;}
+        .card{
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-left: 6px solid #4CAF50;
+        }
+        .nombre{font-weight: bold; font-size: 1.2em; color: #333; margin: 0;}
+        .detalles{color: #666; margin: 5px 0 0 0;}
+        .precio{color: #2ecc71; font-weight: bold;}
+    </style>
+</head>
+<body>
+    <h1>Ciclos en js</h1>
+    <section id="contenedor"></section>
+    <section id="listaLenguajes"></section>
+    <section id="listaProductos"></section>
+    <p></p>
+
+    <script>
+        const contenedorP = document.getElementById('contenedor');
+        for (let pasos = 1; pasos <= 5; pasos++){
+            console.log("paso: " + pasos);
+            const nuevoParrafo = document.createElement('p');
+            nuevoParrafo.textContent = 'Paso numero: ' + pasos;
+            nuevoParrafo.classList.add('textoDinamico');
+            contenedorP.appendChild(nuevoParrafo);
+        }
+    </script>
+    <script>
+        // Definicion de la lista de lenguajes de programacion
+        const lenguajes = ['JavaScript', 'Python', 'PHP', 'C++', 'Java'];
+        // seleccionamos el contenedor padre
+        const contenedorListas = document.getElementById('listaLenguajes');
+        // se inicia el ciclo for para seleccionar los elementos de la lista
+        for(let i = 0; i < lenguajes.length; i++){
+            const p  = document.createElement('p');
+            p.textContent = 'Desarrollo en: '  + lenguajes[i];
+            contenedorListas.appendChild(p);
+        }
+    </script>
+    <script>
+        // Array de objetos: cada uno representa un item complejo
+        const productos = [
+            {nombre: 'Teclado', precio: 85, stock: 12},
+            {nombre: 'Mouse inalambrico', precio: 45, stock: 0},
+            {nombre: 'Monitor de 32 pulgadas', precio: 150, stock: 5},
+            {nombre: 'Auricular gamer', precio: 60, stock: 8},
+            {nombre: 'Microfono', precio: 110, stock: 10},
+            {nombre: 'Mouspad', precio: 88, stock: 2},
+            {nombre: 'Adaptador USB-C a RJ45', precio: 220, stock: 3}
+        ];
+        const contenedorProductos = document.getElementById('listaProductos');
+        // recorrer los elementos del array con un ciclo for
+        for (let x in productos) {
+            if (productos[x].precio >= 40 && productos[x].precio <= 100) {
+            // creamos tarjetas para mostrar los productos
+            const divCard = document.createElement('div');
+            divCard.className = 'card';
+            // extraer los elementos del objeto actual
+            const itemActual = productos[x];
+            // Parrafo de nombres del producto
+            const pNombre = document.createElement('p');
+            pNombre.className = 'nombre';
+            pNombre.textContent = itemActual.nombre;
+            // para detalles del producto
+            const pDetalles = document.createElement('p');
+            pDetalles.className = 'detalles';
+            // Logica para el stock
+            const mensajeStock = itemActual.stock > 0 ? 'Stock: ' + itemActual.stock : 'Agotado';
+            pDetalles.innerHTML = 'Precio: <span class ="precio">' + itemActual.precio +"</span> | " + mensajeStock; 
+            // insertar los elementos en el card
+            divCard.appendChild(pNombre);
+            divCard.appendChild(pDetalles);
+            contenedorProductos.appendChild(divCard);
+            // if (x == 2){continue;}
+            }
+        }
+    </script>
+</body>
+</html>
