@@ -1,0 +1,156 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html{
+  height: 100%;
+}
+
+body{
+  min-height: 100%;
+
+}
+.grid-container > * {
+  box-shadow: 1px 1px 7px 0px rgb(57, 55, 55);
+  border-radius: 4px;
+  padding: 10px;
+  text-align: center;
+}
+
+.header{
+  grid-area: header;
+  border-radius: 10px;
+}
+
+.main{
+  grid-area: main;
+  background: linear-gradient(to right, #13747d, #fcf7c5);
+  padding: 30px;
+}
+.footer{
+  grid-area: footer;
+  background-color: #333;
+  color: #FFF;
+  padding: 10px;
+  text-align: center;
+  clear: both;
+  border-radius: 0 0 10px 10px;
+}
+.grid-container{
+  display: grid;
+  gap: 10px;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+}
+
+
+/*estilos del encabezado*/
+.div1 {
+  grid-area: 1 / 1 / 2 / 6;
+  
+}
+
+/*estilos del contenido*/
+.div2 {
+  grid-area: 2 / 1 / 5 / 6;
+  margin: 0;
+}
+
+/*Estilos del footer*/
+.div3 {
+  grid-area: 5 / 1 / 6 / 6;
+  
+}
+
+ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li{
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 2.5em;
+}
+
+li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.active{
+  background-color: #fcf7c5;
+}
+
+h1{
+  background-color: #333;
+  padding: 10px;
+  margin: 0;
+  color: #fcf7c5;
+  border-radius: 10px 10px 0px 0px;
+  font-size: 5em;
+}
+h1 a{
+  color: #fcf7c5;
+  text-decoration: none;
+}
+
+header h3{
+  background-color: #333;
+  padding: 10px;
+  margin: 0;
+  color: #fcf7c5;
+  font-size: 3.75em;
+}
+small a{
+  color: #fcf7c5;
+  text-decoration: none;
+}
+
+article h2{
+  font-size: 5em;
+  text-transform: uppercase;
+}
+article h3{
+  font-size: 4em;
+  text-transform: uppercase;
+  line-height: 2.0;
+}
+.contenedorFotoInicio{
+  width: 10%;
+  float: left;
+}
+
+.fotoPerfilInicio{
+  width: 360px;
+  border-radius: 100%;
+  filter: drop-shadow(5px 5px 10px white)
+}
+
+.contenedorTextoInicio{
+  display: grid;
+  grid-template-columns: 20% auto;
+  grid-gap: 5px;
+
+}
+
+/* .contenedorTextoInicio .div{
+  width: 100%;
+} */
+
+/* .contenedorTextoInicio picture{
+  width: 10%;
+} */

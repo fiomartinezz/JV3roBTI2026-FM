@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   role="img"
+   viewBox="0 0 24 24"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="academia.svg"
+   inkscape:version="1.4 (86a8ad7, 2024-10-11)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="16.979167"
+     inkscape:cx="10.866257"
+     inkscape:cy="16.461349"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer2" />
+  <title
+     id="title1">Academia</title>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="fondo">
+    <path
+       id="rect4"
+       style="fill:#ffd43b;fill-opacity:1;stroke:#ffd43b;stroke-width:0.86747;stroke-opacity:1;paint-order:fill markers stroke"
+       d="M 3.4433594 0.43359375 C 1.7765684 0.43359375 0.43359375 1.7765684 0.43359375 3.4433594 L 0.43359375 20.558594 C 0.43359375 22.225385 1.7765684 23.566406 3.4433594 23.566406 L 20.558594 23.566406 C 21.72292 23.566406 22.72598 22.910187 23.226562 21.947266 L 13.253906 21.947266 L 13.253906 20.849609 C 14.840829 20.849609 15.695312 20.482213 15.695312 19.505859 C 15.695313 19.140075 15.573099 18.775752 15.451172 18.287109 L 14.351562 15.478516 L 6.5410156 15.478516 C 5.9313761 17.187368 5.4422404 18.530416 5.3203125 18.652344 C 4.5878143 20.483124 5.5645854 20.729636 7.2734375 20.851562 L 7.2734375 21.949219 L 0.92578125 21.949219 L 0.92578125 20.851562 C 1.6582793 20.729635 2.3909098 20.606379 2.6347656 19.751953 L 9.2265625 2.90625 L 8.25 0.46484375 L 13.742188 0.46484375 L 21.433594 19.751953 C 21.67745 20.484451 22.409246 20.728612 23.263672 20.849609 L 23.263672 21.871094 C 23.455954 21.474162 23.566406 21.030811 23.566406 20.558594 L 23.566406 3.4433594 C 23.566406 1.7765684 22.225385 0.43359375 20.558594 0.43359375 L 3.4433594 0.43359375 z M 10.326172 5.4707031 A 338.14331 338.14331 0 0 1 7.2734375 13.404297 L 13.5 13.404297 L 10.326172 5.4707031 z " />
+  </g>
+</svg>

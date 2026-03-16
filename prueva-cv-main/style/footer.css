@@ -1,0 +1,15 @@
+@media(max-width:600px){
+  .footer small div{
+    width: auto;
+    /* display: inline-flex; */
+    text-align: center;
+  }
+  .footer small a{
+    padding: 10px;
+    font-size: 12px;
+  }
+  .footer small p{
+    font-size: 12px;
+    margin: 10px;
+  }
+}

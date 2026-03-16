@@ -1,0 +1,21 @@
+@media (max-width: 600px){
+  article h2{
+    font-size: 1.5em;
+    text-transform: uppercase;
+  }
+  article h3{
+    font-size: 1em;
+    text-transform: uppercase;
+    line-height: 2.0;
+  }
+  .contenedorFotoInicio{
+    width: auto;
+    
+  }
+  
+  .fotoPerfilInicio{
+    width: 150px;
+    border-radius: 100%;
+    filter: drop-shadow(5px 5px 10px white)
+  }
+}

@@ -1,0 +1,20 @@
+@media(max-width:600px){
+  table{
+    width: 100%;
+  }
+  td{
+    border: solid 1px #333;
+    padding: 10px;
+    font-size: 14px;
+    color: white;
+    border-radius: 10px;
+  }
+  th{
+    font-size: 18px;
+    padding: 10px;
+    color: white;
+    text-shadow: 2px 1px 1px #333;
+    border: solid 2px #333;
+    border-radius: 10px;
+  }
+}

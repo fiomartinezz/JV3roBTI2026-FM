@@ -1,0 +1,18 @@
+@media(max-width:600px){
+  .main dl dt{
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .main dl dd{
+    font-size: 16px;
+    font-weight: lighter;
+    padding: 10px;
+  }
+
+  .main h2{
+    font-size: 24px;
+    font-weight: bold;
+    padding: 10px;
+  }
+}
