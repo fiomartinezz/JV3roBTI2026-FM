@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body>
+  <header class="bg-black bg-opacity-50 h-16">
+
+  </header>
+
+  <!-- FIN HEADER -->
+
+  <section class="grid grid-cols-6">
+
+    <aside class="col-start-1 col-span-1 bg-sky-500 p-5">
+      <p>Menu vertical</p>
+    </aside>
+
+    <main class="col-start-2 col-span-6 p-5">
+      <h2>Contenido</h2>
+
+      <button id="btn-cargar"
+        class="bg-blue-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300">CARGAR</button>
+
+      <button id="btn-API"
+        class="bg-red-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300">OBTENER
+        USUARIOS</button>
+
+      <div class="max-w-6xl mx-auto">
+
+        <head class="flex justify-between items-center mb-8">
+          <h1>DIRECTORIO DE USUARIOS</h1>
+        </head>
+
+        <div id="grid-usuarios" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        </div>
+
+        <div id="loader" class="hidden text-center py-10">
+          <p class="text-xl text-blue-500 animate-pulse">Conectando a la API</p>
+        </div>
+      </div>
+
+      <div id="id-tarjeta" class="fixed hidden inset-0 bg-sky-50 flex items-center justify-center z-50 animate-fade-in">
+        <div class="bg-white rounded-lg shadow-2x1 max-w-md w-full p-6 relative">
+          <title>Tarjeta</title>
+          <main>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda cum ad distinctio omnis,
+            error numquam, libero eos sint quidem pariatur adipisci harum quos iste explicabo, officia ea
+            quis sequi est?</main>
+          <button id="btn-cerrar-tarjeta"
+            class="absolute top-1 right-3
+          bg-red-500 text-white font-semibold py-1 px-1 rounded-md hover:bg-blue-600 transition duration-300">&times;</button>
+        </div>
+      </div>
+
+      <div id="ventana-publicaciones" class="max-w-6xl mx-auto hidden">
+      <div id="grid-publicaciones" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        </div>
+      </div>
+
+
+    </main>
+  </section>
+
+  <!-- FIN MAIN -->
+  <footer class="bg-black bg-opacity-50 h-24">
+
+  </footer>
+
+  <script>
+    const gridPublicaciones = document.getElementById('grid-publicaciones');
+    const mostrarVentanaPublicaciones =  document.getElementById('ventana-publicaciones');
+
+    // Crear la conexion a la api jsonplaceholder
+    async function conectarPublicaciones() {
+      try{
+        // mostramos el aviso de conexion a la API
+        aviso.classList.remove('hidden');
+        grid.innerHTML = '';
+
+        // Utilizamos AJAX para conectarnos y esperar la respuesta de la API
+        const resPosts = await fetch('https://jsonplaceholder.typicode.com/posts');
+
+        if (!resPosts.ok) throw new Error('Error en la carga de publicaciones');
+
+        const publicaciones = await resPosts.json();
+
+        // ocultamos el aviso de carga
+        aviso.classList.add('hidden');
+        // console.log(publicaciones[0].title);
+        let userId = 1;
+
+        for(i=0; i < publicaciones.length; i++){
+          if(publicaciones[i].userId == userId){
+
+            let tituloPublicacion = publicaciones[i].title;
+            let cuerpoPublicacion = publicaciones[i].body;
+            // console.log('Titulo: ', tituloPublicacion);
+            // console.log('Mensaje: ', cuerpoPublicacion);
+
+            // Creamos el contenedor para la publicacion
+            const cardPosts = document.createElement('div');
+
+            // dejamos espacio para los estilos de tailwind
+          cardPosts.className = "bg-white p-6 rounded-xl shadow-md border-t-4 border-blue-500 hover:shadow-lg transition"
+
+          // estructura interna de la tarjeta
+          cardPosts.innerHTML = `
+            <h2 class="text-xl font-bold text-gray-800">Posts</h2>
+            <p class="text-blue-600 text-sm font-medium mb-4">${tituloPublicacion}</p>
+            <div class="text-gray-600 text-sm space-y-2">
+              <p><b>📧Body:</b> ${cuerpoPublicacion}</p>
+            </div>
+            <button id="btn-ver-publicaciones" class="mt-4 w-full bg-gray-100 hover:bg-gray-200 text-gray-700 
+            py-2 rounded-md text-sm font-semibold">
+              Cerrar 
+            </button>
+          `;
+
+          grid.appendChild(cardPosts);
+            
+          } else {
+            continue;
+          }
+        }
+
+
+      }catch(error){
+        aviso.innerHTML = `<p class="text-red-500">Error: ${error.message} </p>`;
+        console.error(error);
+      }
+    }
+  </script>
+
+
+
+  <script>
+    const obtenerUsuarios = document.getElementById('btn-API');
+    const grid = document.getElementById('grid-usuarios');
+    const aviso = document.getElementById('loader');
+    const obtenerPublicaciones = document.getElementById('btn-ver-publicaciones');
+
+    // Creamos la conexion a la API mediante una funcion asincrona
+    async function conectarUsuarios() {
+      try {
+        // mostramos el aviso de conexion a la API
+        aviso.classList.remove('hidden');
+        grid.innerHTML = '';
+
+        // Utilizamos AJAX para conectarnos y esperar la respuesta de la API
+        const respuesta = await fetch('https://jsonplaceholder.typicode.com/users');
+
+        if (!respuesta.ok) throw new Error('Error en la carga de usuarios');
+
+        const usuarios = await respuesta.json();
+
+        // ocultamos el aviso de carga
+        aviso.classList.add('hidden');
+
+        // Recorremos el resultado con un ciclo for
+        for (let i = 0; i < usuarios.length; i++) {
+          const usuario = usuarios[i];
+
+          // creamos una tarjeta para el usuario
+          const tarjeta = document.createElement('div');
+
+          // dejamos espacio para los estilos de tailwind
+          tarjeta.className = "bg-white p-6 rounded-xl shadow-md border-t-4 border-blue-500 hover:shadow-lg transition"
+
+          // estructura interna de la tarjeta
+          tarjeta.innerHTML = `
+            <h2 class="text-xl font-bold text-gray-800">${usuario.name}</h2>
+            <p class="text-blue-600 text-sm font-medium mb-4">${usuario.username}</p>
+            <div class="text-gray-600 text-sm space-y-2">
+              <p><b>📧Email:</b> ${usuario.email}</p>
+              <p><b>🏢Empresa:</b> ${usuario.company.name}</p>
+              <p><b>📍Ciudad:</b> ${usuario.address.city}</p>
+            </div>
+            <button id="btn-ver-publicaciones" class="mt-4 w-full bg-gray-100 hover:bg-gray-200 text-gray-700 
+            py-2 rounded-md text-sm font-semibold">
+              Ver publicaciones
+            </button>
+          `;
+
+          grid.appendChild(tarjeta);
+        }
+      } catch (error) {
+        aviso.innerHTML = `<p class="text-red-500">Error: ${error.message} </p>`;
+        console.error(error);
+      }
+    }
+
+    // Ejecutamos la funcion para obtener los usuarios
+    obtenerUsuarios.addEventListener('click', conectarUsuarios);
+    // Ejecutamos la funcion para obtener las publicaciones
+    obtenerPublicaciones.addEventListener('click', conectarPublicaciones);
+  </script>
+
+  <script>
+    // Para mostrar la ventana
+    const btnCargar = document.getElementById('btn-cargar');
+    const btnCerrar = document.getElementById('btn-cerrar-tarjeta');
+
+    function cargar() {
+      document.getElementById('id-tarjeta').classList.remove('hidden');
+    }
+
+    btnCargar.onclick = () => cargar();
+
+    // Para cerrar la ventana
+    function cerrarVentana() {
+      document.getElementById('id-tarjeta').classList.add('hidden');
+    }
+    btnCerrar.onclick = () => cerrarVentana();
+  </script>
+
+</body>
+
+</html>
