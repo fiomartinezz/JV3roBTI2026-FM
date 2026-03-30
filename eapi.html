@@ -59,6 +59,16 @@
       </div>
 
       <div id="ventana-publicaciones" class="max-w-6xl mx-auto hidden">
+
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-2xl font-bold text-gray-800">Publicaciones del Usuario</h2>
+          <button id="btn-ver-publicaciones"
+            class="bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded-md font-bold transition"
+          >
+            &times; Cerrar Publicaciones
+          </button>
+        </div>
+
       <div id="grid-publicaciones" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
         </div>
@@ -78,14 +88,14 @@
     const mostrarVentanaPublicaciones =  document.getElementById('ventana-publicaciones');
 
     // Crear la conexion a la api jsonplaceholder
-    async function conectarPublicaciones() {
+    async function conectarPublicaciones(userId) {
       try{
         // mostramos el aviso de conexion a la API
         aviso.classList.remove('hidden');
         grid.innerHTML = '';
 
         // Utilizamos AJAX para conectarnos y esperar la respuesta de la API
-        const resPosts = await fetch('https://jsonplaceholder.typicode.com/posts');
+        const resPosts = await fetch(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`);
 
         if (!resPosts.ok) throw new Error('Error en la carga de publicaciones');
 
@@ -93,45 +103,39 @@
 
         // ocultamos el aviso de carga
         aviso.classList.add('hidden');
-        // console.log(publicaciones[0].title);
-        let userId = 1;
+        
+        gridPublicaciones.innerHTML = '';
+        mostrarVentanaPublicaciones.classList.remove('hidden');
 
-        for(i=0; i < publicaciones.length; i++){
-          if(publicaciones[i].userId == userId){
+        // agregamos una pequeña animacion
+        window.scrollTo({
+          top: mostrarVentanaPublicaciones.offsetTop - 50,
+          behavior: 'smooth'
+        });
 
-            let tituloPublicacion = publicaciones[i].title;
-            let cuerpoPublicacion = publicaciones[i].body;
-            // console.log('Titulo: ', tituloPublicacion);
-            // console.log('Mensaje: ', cuerpoPublicacion);
+        publicaciones.forEach(post => {
+          // Creamos el contenedor para la publicacion
+          const cardPosts = document.createElement('div');
 
-            // Creamos el contenedor para la publicacion
-            const cardPosts = document.createElement('div');
-
-            // dejamos espacio para los estilos de tailwind
+          // dejamos espacio para los estilos de tailwind
           cardPosts.className = "bg-white p-6 rounded-xl shadow-md border-t-4 border-blue-500 hover:shadow-lg transition"
 
           // estructura interna de la tarjeta
           cardPosts.innerHTML = `
             <h2 class="text-xl font-bold text-gray-800">Posts</h2>
-            <p class="text-blue-600 text-sm font-medium mb-4">${tituloPublicacion}</p>
+            <p class="text-blue-600 text-sm font-medium mb-4">${post.title}</p>
             <div class="text-gray-600 text-sm space-y-2">
-              <p><b>📧Body:</b> ${cuerpoPublicacion}</p>
+              <p><b>📧Body:</b> ${post.body}</p>
             </div>
             <button id="btn-ver-publicaciones" class="mt-4 w-full bg-gray-100 hover:bg-gray-200 text-gray-700 
             py-2 rounded-md text-sm font-semibold">
               Cerrar 
             </button>
           `;
+          gridPublicaciones.appendChild(cardPosts);
+        });
 
-          grid.appendChild(cardPosts);
-            
-          } else {
-            continue;
-          }
-        }
-
-
-      }catch(error){
+      } catch(error) {
         aviso.innerHTML = `<p class="text-red-500">Error: ${error.message} </p>`;
         console.error(error);
       }
@@ -144,7 +148,6 @@
     const obtenerUsuarios = document.getElementById('btn-API');
     const grid = document.getElementById('grid-usuarios');
     const aviso = document.getElementById('loader');
-    const obtenerPublicaciones = document.getElementById('btn-ver-publicaciones');
 
     // Creamos la conexion a la API mediante una funcion asincrona
     async function conectarUsuarios() {
@@ -182,11 +185,15 @@
               <p><b>🏢Empresa:</b> ${usuario.company.name}</p>
               <p><b>📍Ciudad:</b> ${usuario.address.city}</p>
             </div>
-            <button id="btn-ver-publicaciones" class="mt-4 w-full bg-gray-100 hover:bg-gray-200 text-gray-700 
+            <button class="btn-ver-publicaciones mt-4 w-full bg-gray-100 hover:bg-gray-200 text-gray-700 
             py-2 rounded-md text-sm font-semibold">
               Ver publicaciones
             </button>
           `;
+
+          const botonPost = tarjeta.querySelector('.btn-ver-publicaciones');
+          // seleccionamos el id del usuario para enviarlo a la funcion verPublicacion()
+          botonPost.onclick = () => conectarPublicaciones(usuario.id);
 
           grid.appendChild(tarjeta);
         }
@@ -199,7 +206,6 @@
     // Ejecutamos la funcion para obtener los usuarios
     obtenerUsuarios.addEventListener('click', conectarUsuarios);
     // Ejecutamos la funcion para obtener las publicaciones
-    obtenerPublicaciones.addEventListener('click', conectarPublicaciones);
   </script>
 
   <script>
@@ -218,6 +224,19 @@
       document.getElementById('id-tarjeta').classList.add('hidden');
     }
     btnCerrar.onclick = () => cerrarVentana();
+
+    // CERRAR VENTANA DE PUBLICACIONES
+    const btnCerrarPosts = document.getElementById('btn-cerrar-publicaciones');
+    btnCerrarPosts.onclick = () => {
+      // ocultamos la  ventana de publicaciones
+      mostrarVentanaPublicaciones.classList.add('hidden');
+
+      // limpiar el grid para liberar la memoria RAM
+      gridPublicaciones.innerHTML = '';
+
+      // Regresamos a los usuarios
+      document.querySelector('h1').scrollIntoView({behavior:"smooth"});
+    }
   </script>
 
 </body>
